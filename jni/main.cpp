@@ -18,7 +18,7 @@ struct Item
 };
 struct EnderpearlItem : public Item
 {
-	char data[86]; // 90 bytes, just to be safe
+	char data[86]; // 90 bytes, utk jaga2
 	EnderpearlItem(const std::string&, int);
 };
 
