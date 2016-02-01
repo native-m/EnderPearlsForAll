@@ -35,7 +35,7 @@ void initCreativeItems()
 {
 	_initCreativeItems();
 	
-	/* Set category via vtable because it's the least code */
+	/* mengatur kategori via vtable karena itu kode setidaknya.... */
 	void (*setCategory)(Item*, int) = (void (*)(Item*, int)) Item::mEnderpearl->vtable[5];
 	setCategory(Item::mEnderpearl, 3);
 	
@@ -51,9 +51,9 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Item::initItems, (void*) &initItems, (void**) &_initItems);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &initCreativeItems, (void**) &_initCreativeItems);
 	
-	/* Make EnderMan drop pearls */
+	/* Supaya enderman ngeluarin enderpearls pas mati */
 	void** EnderMan_vtable = (void**) ((uintptr_t) dlsym(RTLD_DEFAULT, "_ZTV8EnderMan") + 8);
 	EnderMan_vtable[193] = (void*) &getEnderManDrop;
 
-	return JNI_VERSION_1_2;
+	return JNI_VERSION_1_2; // Langsung return JNI-nya
 }
